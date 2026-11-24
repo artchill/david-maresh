@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:#efe6d2;color:#3a342a;font-weight:400}
+/* paper grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.18;mix-blend-mode:multiply;
+background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .28  0 0 0 0 .18  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.view{animation:fadein .6s ease both}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:.9rem;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:#a88a55;font-weight:500}
+.eyebrow::before,.eyebrow.both::after{content:"";width:2.5rem;height:1px;background:currentColor;opacity:.7}
+.caps{letter-spacing:.14em;text-transform:uppercase}
+.hair{height:1px;background:linear-gradient(90deg,transparent,#a88a55 20%,#a88a55 80%,transparent);opacity:.6}
+.btn{display:inline-flex;align-items:center;gap:.7rem;padding:1.05rem 2rem;font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:all .3s;border:1px solid #a88a55}
+.btn-brass{background:#a88a55;color:#171a18}.btn-brass:hover{background:#c0a06a;border-color:#c0a06a}
+.btn-line{color:#efe6d2;background:transparent}.btn-line:hover{background:rgba(168,138,85,.15)}
+.btn-dark{background:#171a18;color:#efe6d2;border-color:#171a18}.btn-dark:hover{background:#2b302c}
+.sepia-photo{filter:sepia(.55) contrast(1.05) brightness(.78)}
+.frame{position:relative}
+.frame::before{content:"";position:absolute;inset:-14px;border:1px solid rgba(168,138,85,.55);pointer-events:none}
+.cover-shadow{box-shadow:0 40px 70px -25px rgba(0,0,0,.7),0 12px 24px -12px rgba(0,0,0,.5)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #a88a55;outline-offset:3px}
+.dropcap::first-letter{font-family:"Cormorant Garamond",serif;float:left;font-size:5.2rem;line-height:.78;padding:.35rem .7rem 0 0;color:#6e5a3c;font-weight:600}
+.lockup{font-family:"Cormorant Garamond",serif;font-weight:500;color:#efe6d2;line-height:.86;text-transform:uppercase}
+.field{width:100%;background:transparent;border:0;border-bottom:1px solid #8b7d62;padding:.8rem 0;font-size:1rem;color:#171a18;transition:border-color .2s}
+.field:focus{outline:none;border-color:#171a18}
+.field::placeholder{color:#a79b82}
+.nav-a{position:relative;padding:.4rem 0}
+.nav-a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:#a88a55;transition:width .3s}
+.nav-a:hover::after,.nav-a[aria-current=page]::after{width:100%}
+
+/* ---------- Words from the Memoir: pure CSS carousel ---------- */
+.cz{position:relative}
+.cz-viewport{overflow:hidden}
+.cz-track{display:flex;transition:transform .9s cubic-bezier(.65,0,.35,1)}
+.cz-slide{flex:0 0 100%;min-height:22rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem 4.5rem;opacity:.15;transition:opacity .9s}
+.cz-slide .qm{font-family:"Cormorant Garamond",serif;font-size:7rem;line-height:.6;height:3.2rem;color:#a88a55;opacity:.8;margin-bottom:1.2rem}
+.cz-btn{display:none;position:absolute;top:calc(50% - 1.5rem);width:3rem;height:3rem;align-items:center;justify-content:center;color:#a88a55;border:1px solid rgba(168,138,85,.5);border-radius:9999px;cursor:pointer;transition:all .25s}
+.cz-btn:hover{background:#a88a55;color:#171a18}
+.cz-dots{display:flex;justify-content:center;align-items:center;gap:.55rem;margin-top:2rem;flex-wrap:wrap}
+.cz-dots label{width:.5rem;height:.5rem;border-radius:9999px;background:rgba(239,230,210,.28);cursor:pointer;transition:all .35s}
+.cz-dots label:hover{background:rgba(239,230,210,.6)}
+.cz-count{text-align:center;margin-top:1.6rem;font-size:.7rem;letter-spacing:.4em;color:#a88a55}
+.cz-count span{display:none}
+#q1:checked ~ .cz-viewport .cz-track{transform:translateX(-0%)}
+#q1:checked ~ .cz-viewport .cz-slide:nth-child(1){opacity:1}
+#q1:checked ~ .cz-dots label[for=q1]{background:#a88a55;width:2rem}
+#q1:checked ~ .cz-nav .prev-10, #q1:checked ~ .cz-nav .next-2{display:flex}
+#q1:checked ~ .cz-count .c1{display:inline}
+#q1:focus-visible ~ .cz-dots label[for=q1]{outline:2px solid #a88a55;outline-offset:3px}
+#q2:checked ~ .cz-viewport .cz-track{transform:translateX(-100%)}
+#q2:checked ~ .cz-viewport .cz-slide:nth-child(2){opacity:1}
+#q2:checked ~ .cz-dots label[for=q2]{background:#a88a55;width:2rem}
+#q2:checked ~ .cz-nav .prev-1, #q2:checked ~ .cz-nav .next-3{display:flex}
+#q2:checked ~ .cz-count .c2{display:inline}
+#q2:focus-visible ~ .cz-dots label[for=q2]{outline:2px solid #a88a55;outline-offset:3px}
+#q3:checked ~ .cz-viewport .cz-track{transform:translateX(-200%)}
+#q3:checked ~ .cz-viewport .cz-slide:nth-child(3){opacity:1}
+#q3:checked ~ .cz-dots label[for=q3]{background:#a88a55;width:2rem}
+#q3:checked ~ .cz-nav .prev-2, #q3:checked ~ .cz-nav .next-4{display:flex}
+#q3:checked ~ .cz-count .c3{display:inline}
+#q3:focus-visible ~ .cz-dots label[for=q3]{outline:2px solid #a88a55;outline-offset:3px}
+#q4:checked ~ .cz-viewport .cz-track{transform:translateX(-300%)}
+#q4:checked ~ .cz-viewport .cz-slide:nth-child(4){opacity:1}
+#q4:checked ~ .cz-dots label[for=q4]{background:#a88a55;width:2rem}
+#q4:checked ~ .cz-nav .prev-3, #q4:checked ~ .cz-nav .next-5{display:flex}
+#q4:checked ~ .cz-count .c4{display:inline}
+#q4:focus-visible ~ .cz-dots label[for=q4]{outline:2px solid #a88a55;outline-offset:3px}
+#q5:checked ~ .cz-viewport .cz-track{transform:translateX(-400%)}
+#q5:checked ~ .cz-viewport .cz-slide:nth-child(5){opacity:1}
+#q5:checked ~ .cz-dots label[for=q5]{background:#a88a55;width:2rem}
+#q5:checked ~ .cz-nav .prev-4, #q5:checked ~ .cz-nav .next-6{display:flex}
+#q5:checked ~ .cz-count .c5{display:inline}
+#q5:focus-visible ~ .cz-dots label[for=q5]{outline:2px solid #a88a55;outline-offset:3px}
+#q6:checked ~ .cz-viewport .cz-track{transform:translateX(-500%)}
+#q6:checked ~ .cz-viewport .cz-slide:nth-child(6){opacity:1}
+#q6:checked ~ .cz-dots label[for=q6]{background:#a88a55;width:2rem}
+#q6:checked ~ .cz-nav .prev-5, #q6:checked ~ .cz-nav .next-7{display:flex}
+#q6:checked ~ .cz-count .c6{display:inline}
+#q6:focus-visible ~ .cz-dots label[for=q6]{outline:2px solid #a88a55;outline-offset:3px}
+#q7:checked ~ .cz-viewport .cz-track{transform:translateX(-600%)}
+#q7:checked ~ .cz-viewport .cz-slide:nth-child(7){opacity:1}
+#q7:checked ~ .cz-dots label[for=q7]{background:#a88a55;width:2rem}
+#q7:checked ~ .cz-nav .prev-6, #q7:checked ~ .cz-nav .next-8{display:flex}
+#q7:checked ~ .cz-count .c7{display:inline}
+#q7:focus-visible ~ .cz-dots label[for=q7]{outline:2px solid #a88a55;outline-offset:3px}
+#q8:checked ~ .cz-viewport .cz-track{transform:translateX(-700%)}
+#q8:checked ~ .cz-viewport .cz-slide:nth-child(8){opacity:1}
+#q8:checked ~ .cz-dots label[for=q8]{background:#a88a55;width:2rem}
+#q8:checked ~ .cz-nav .prev-7, #q8:checked ~ .cz-nav .next-9{display:flex}
+#q8:checked ~ .cz-count .c8{display:inline}
+#q8:focus-visible ~ .cz-dots label[for=q8]{outline:2px solid #a88a55;outline-offset:3px}
+#q9:checked ~ .cz-viewport .cz-track{transform:translateX(-800%)}
+#q9:checked ~ .cz-viewport .cz-slide:nth-child(9){opacity:1}
+#q9:checked ~ .cz-dots label[for=q9]{background:#a88a55;width:2rem}
+#q9:checked ~ .cz-nav .prev-8, #q9:checked ~ .cz-nav .next-10{display:flex}
+#q9:checked ~ .cz-count .c9{display:inline}
+#q9:focus-visible ~ .cz-dots label[for=q9]{outline:2px solid #a88a55;outline-offset:3px}
+#q10:checked ~ .cz-viewport .cz-track{transform:translateX(-900%)}
+#q10:checked ~ .cz-viewport .cz-slide:nth-child(10){opacity:1}
+#q10:checked ~ .cz-dots label[for=q10]{background:#a88a55;width:2rem}
+#q10:checked ~ .cz-nav .prev-9, #q10:checked ~ .cz-nav .next-1{display:flex}
+#q10:checked ~ .cz-count .c10{display:inline}
+#q10:focus-visible ~ .cz-dots label[for=q10]{outline:2px solid #a88a55;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.cz-track,.cz-slide{transition:none}}
+@media (max-width:767px){.cz-slide{padding:1rem 0;min-height:24rem}.cz-btn{top:auto;bottom:-.2rem;width:2.5rem;height:2.5rem}.cz-dots{margin-top:3.6rem}}

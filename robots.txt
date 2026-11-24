@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /contact-send.php
+Sitemap: https://davidmareshbook.com/sitemap.xml
